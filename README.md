@@ -69,8 +69,8 @@ Defines key configurations such as:
 
 3. Internationalization & Localization
 Settings for time zones, language, and date formats.
-
 <pre>  
+  # Code from settings.py 
   LANGUAGE_CODE = 'en-us' 
   TIME_ZONE = 'UTC' 
   USE_I18N = True 
