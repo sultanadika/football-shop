@@ -51,6 +51,9 @@
 
 Website is done and well finished :D 🥇💯
 
+# Diagram showing the client request to the Django-based web application and its response
+
+
 # Role of Settings.py in a Django Project
 
 🔑 1. Project Configuration
@@ -96,7 +99,31 @@ Process of database migration:
 - Running Migration
   <pre> python manage.py migrate </pre>
   - Django executes the instructions in the migration files.
-  - easy to use because it will automatically update to the newest models when migrating
-  - can be modified in anytime and simple to use
+  - Easy to use because it will automatically update to the newest models when migrating
+  - Can be modified in anytime and simple to use
+
+
+# why is the Django framework chosen as the starting point for learning software development?
+
+1. Large Community & Documentation
+- Django has excellent official documentation and a huge global community. Beginners can easily find tutorials, guides, and answers to common problems.
+
+2. Fast Development
+- Django was designed to help developers build applications quickly. For beginners, this means you can see results fast (like building a blog or store in just a few steps), which keeps learning motivating and fun.
+
+3. Clear Project Structure
+- Provides an organized folder and file layout making it easier to maintain code and follow good development practices.
+- Model View Template which it is really easy to learn.
+
+4. Ready to use Framework
+- Used by famous companies (ex: Instagram, Mozilla, etc)
+- Teaches the best practice that are applicable on industries
+- Great Production features
+
+5. Friendly Learning Framework:
+- Has a very high and detailed documentation which it helps new developers on studying django
+- Very good for debugging code as the error notice are mostly easy to understand
+  
+
 
 
