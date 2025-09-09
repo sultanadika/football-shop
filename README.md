@@ -54,6 +54,15 @@ Website is done and well finished :D 🥇💯
 # Diagram showing the client request to the Django-based web application and its response
 <img width="1416" height="1154" alt="image" src="https://github.com/user-attachments/assets/187d94dc-03a0-4811-b766-6b102dcbfc9a" />
 
+Extra Explanation: 
+1. User sents a request with internet and received it by django
+2. Django sends the rquest to its internal and it went to urls.py first
+3. urls.py received the request and handle the requent based on its URL pattern
+4. After being handled by urls.py, sents the request to view.py
+5. View.py work the request with the help of models.py and templates (main.html)
+6. models.py work on its database mainly and main.html works more on its structure and context data
+7. after view.py got the result with the help of 2, view.py gonna insert the data to placeholder
+8. After its inserted, the response is sent to the user
 
 
 # Role of Settings.py in a Django Project
@@ -129,4 +138,5 @@ Process of database migration:
 #  Feedback for the teaching assistant for Tutorial 1
 
 No feedback from me, The tutorial is so easy to understand and i could say is fun to learn from it!
+
 
