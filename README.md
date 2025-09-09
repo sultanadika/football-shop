@@ -67,5 +67,9 @@ Defines key configurations such as:
 - Located in the DATABASES dictionary.
 - Defines which database you’re using (SQLite, PostgreSQL, MySQL, etc.).
 
-3. 
+3. Internationalization & Localization
+Settings for time zones, language, and date formats.
+
+<pre> ```python LANGUAGE_CODE = 'en-us' TIME_ZONE = 'UTC' USE_I18N = True USE_TZ = True ``` </pre>
+
 
