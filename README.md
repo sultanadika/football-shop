@@ -69,10 +69,16 @@ Defines key configurations such as:
 
 3. Internationalization & Localization
 Settings for time zones, language, and date formats.
-<pre> LANGUAGE_CODE = 'en-us' 
+<pre>   LANGUAGE_CODE = 'en-us' 
   TIME_ZONE = 'UTC' 
   USE_I18N = True 
   USE_TZ = True  
 </pre>
+
+4. Security
+
+- DEBUG = if True, errors are shown (only in development).
+
+- ALLOWED_HOSTS = defines which hosts can access your site (important for deployment).
 
 
