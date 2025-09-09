@@ -103,7 +103,7 @@ Process of database migration:
   - Can be modified in anytime and simple to use
 
 
-# why is the Django framework chosen as the starting point for learning software development?
+# Why is the Django framework chosen as the starting point for learning software development?
 
 1. Large Community & Documentation
 - Django has excellent official documentation and a huge global community. Beginners can easily find tutorials, guides, and answers to common problems.
@@ -124,6 +124,7 @@ Process of database migration:
 - Has a very high and detailed documentation which it helps new developers on studying django
 - Very good for debugging code as the error notice are mostly easy to understand
   
+#  Feedback for the teaching assistant for Tutorial 1
 
-
+No feedback from me, The tutorial is so easy to understand and i could say is fun to learn from it!
 
