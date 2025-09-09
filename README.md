@@ -82,3 +82,13 @@ Settings for time zones, language, and date formats.
 - ALLOWED_HOSTS = defines which hosts can access your site (important for deployment).
 
 
+# How does database migration work in Django
+
+Database Migration:
+In Django, migrations are the way Django translates changes in your models.py into actual database schema changes (tables, columns, constraints).
+
+Process of database migration:
+- Creating a Migration
+  <pre> python manage.py makemigrations </pre>
+
+
