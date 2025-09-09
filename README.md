@@ -52,7 +52,9 @@
 Website is done and well finished :D 🥇💯
 
 # Diagram showing the client request to the Django-based web application and its response
-On development 
+<img width="1416" height="1154" alt="image" src="https://github.com/user-attachments/assets/187d94dc-03a0-4811-b766-6b102dcbfc9a" />
+
+
 
 # Role of Settings.py in a Django Project
 
