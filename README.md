@@ -55,12 +55,17 @@ Website is done and well finished :D 🥇💯
 
 🔑 1. Project Configuration
 
-It defines key configurations like:
+Defines key configurations such as: 
+- INSTALLED_APPS → active apps in the project (e.g., main, django.contrib.admin).
 
-INSTALLED_APPS → active apps in the project (e.g., main, django.contrib.admin).
+- MIDDLEWARE → layers that process requests and responses
 
-MIDDLEWARE → layers that process requests and responses
+- ROOT_URLCONF → tells Django which urls.py file to use. (in this case i used 'football_shop.urls')
 
-ROOT_URLCONF → tells Django which urls.py file to use. (in this case i used 'football_shop.urls')
+2. Database Settings
 
+- Located in the DATABASES dictionary.
+- Defines which database you’re using (SQLite, PostgreSQL, MySQL, etc.).
+
+3. 
 
