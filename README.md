@@ -46,7 +46,7 @@
 - Push the repositories into PWS and deploy it at PWS
    
 10. After deployment:
-- After deployment is success copy the website link from PWS and paste it into google
+- After deployment is success copy the website link from PWS and paste it into github and scele 
 - if its not success yet then finding the bug to fix it would be the best to do :D
 
 Website is done and well finished :D 🥇💯
