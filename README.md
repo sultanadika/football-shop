@@ -53,3 +53,14 @@ Website is done and well finished :D 🥇💯
 
 # Role of Settings.py in a Django Project
 
+🔑 1. Project Configuration
+
+It defines key configurations like:
+
+INSTALLED_APPS → active apps in the project (e.g., main, django.contrib.admin).
+
+MIDDLEWARE → layers that process requests and responses
+
+ROOT_URLCONF → tells Django which urls.py file to use. (in this case i used 'football_shop.urls')
+
+
