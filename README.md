@@ -49,3 +49,7 @@
 - After deployment is success copy the website link from PWS and paste it into google
 - if its not success yet then finding the bug to fix it would be the best to do :D
 
+Website is done and well finished :D 🥇💯
+
+# Role of Settings.py in a Django Project
+
