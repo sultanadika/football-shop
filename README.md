@@ -90,5 +90,13 @@ In Django, migrations are the way Django translates changes in your models.py in
 Process of database migration:
 - Creating a Migration
   <pre> python manage.py makemigrations </pre>
+  - Creates new Migration files 
+  - This also will make Django compare the current models with the last migration ever did
+
+- Running Migration
+  <pre> python manage.py migrate </pre>
+  - Django executes the instructions in the migration files.
+  - easy to use because it will automatically update to the newest models when migrating
+  - can be modified in anytime and simple to use
 
 
