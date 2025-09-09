@@ -26,7 +26,10 @@
   - add database configurations in settings.py
 
 4. Create Main Application
-   - 
+  - create main by doing "python manage.py startapp main"
+  - register 'main' in 'settings.py' file
+
+5. 
 
 
 
