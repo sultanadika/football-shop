@@ -1,4 +1,4 @@
-# ⚽ Soccer Apparel (ASSIGNMENT 2 PBP)
+# ⚽Soccer Apparel⚽ (ASSIGNMENT 2 PBP)
 
 **Name:** Sultanadika Shidqi M  
 **NPM:** 2406365326  
