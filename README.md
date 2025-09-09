@@ -52,7 +52,7 @@
 Website is done and well finished :D 🥇💯
 
 # Diagram showing the client request to the Django-based web application and its response
-
+On development 
 
 # Role of Settings.py in a Django Project
 
