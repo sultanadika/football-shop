@@ -38,14 +38,14 @@
 7. Created a function in views.py that consist of Name,NPM,Class
 
 8. Creating and apply Model Migrations
-   - do python manage.py makemigrations to create model migrations
-   - do python manage.py migrate to apply migrations to local database
+- do python manage.py makemigrations to create model migrations
+- do python manage.py migrate to apply migrations to local database
      
 9. Deploying the website:
-   - Push the repositories into Github
-   - Push the repositories into PWS and deploy it at PWS
+- Push the repositories into Github
+- Push the repositories into PWS and deploy it at PWS
    
 10. After deployment:
-    - After deployment is success copy the website link from PWS and paste it into google
-    - if its not success yet then finding the bug to fix it would be the best to do :D
+- After deployment is success copy the website link from PWS and paste it into google
+- if its not success yet then finding the bug to fix it would be the best to do :D
 
