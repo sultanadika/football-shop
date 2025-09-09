@@ -70,6 +70,11 @@ Defines key configurations such as:
 3. Internationalization & Localization
 Settings for time zones, language, and date formats.
 
-<pre> ```python LANGUAGE_CODE = 'en-us' TIME_ZONE = 'UTC' USE_I18N = True USE_TZ = True ``` </pre>
+<pre>  
+  LANGUAGE_CODE = 'en-us' 
+  TIME_ZONE = 'UTC' 
+  USE_I18N = True 
+  USE_TZ = True  
+</pre>
 
 
