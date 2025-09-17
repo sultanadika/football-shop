@@ -152,3 +152,18 @@ Without a proper data delivery on the website it can cause:
 - Its components cant communicate effectively
 
 
+__In your opinion, which is better, XML or JSON? Why is JSON more popular than XML?__
+
+In my opinion JSON is more efficient because JSON offers a more clear structure which is easier to learn for beginners, not like XML which is more complex. This reason is what makes JSON more popular than XML
+
+
+__ What is the purpose of the is_valid() method in Django forms, and why do we need it?__ 
+
+The is_valid() method in Django forms is used to check whether the data submitted through the form is valid according to the form’s rules and constraints. 
+
+is_valid() is needed because :
+
+- Prevents invalid data from being saved to the database.
+- Ensures data integrity by checking constraints (like field types, min/max values, required fields).
+- Provides user feedback by showing errors when the input doesn’t meet the rules.
+
