@@ -295,6 +295,22 @@ __Created a file "create_football_product.html"__
 #  Feedback for the teaching assistant for Tutorial 2
 No Feedback from me as the tutorial already helped me alot :D
 
+# Postman IMG
+
+JSON 
+<img width="1457" height="939" alt="Screenshot 2025-09-17 113534" src="https://github.com/user-attachments/assets/27cb3f99-e740-4e63-88d0-557911e77c26" />
+
+XML 
+<img width="1456" height="928" alt="Screenshot 2025-09-17 113618" src="https://github.com/user-attachments/assets/757c9cf6-00e4-4d8b-8653-4571b8e2088e" />
+
+JSON BY ID
+<img width="1463" height="957" alt="Json by ID" src="https://github.com/user-attachments/assets/ef4e01ed-e498-4efa-a541-e878cb0c15e5" />
+
+XML BY ID
+<img width="1460" height="965" alt="product xml by id" src="https://github.com/user-attachments/assets/2b6dc502-4fdc-4e07-b70a-16b368080b85" />
+
+
+
 
 
 
