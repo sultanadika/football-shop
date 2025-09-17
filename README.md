@@ -269,3 +269,32 @@ __small addition__
 - product/json/ : show items in json format
 - product/xml/int:id/ : returns specific xml format item based on its ID
 - product/json/int:id/ : returns specific json format item based on its ID
+
+**Created Main webpage with features in main.html**
+
+__Features Added__
+
+- View Product Detail button
+- Display item image based on its URL
+- shows brand, name price of the product
+- Add product button below name,npm,class details
+
+**Created Details in product_details.html**
+
+__product_details_page_info__
+
+- Displayed when the product is created in website
+- Displayed the price of the product
+- Displayed the thumbnail of the product
+- Displayed the Product name in big font
+- Displayed the short details of product
+- Displayed tags of the product for easier search
+
+__Created a file "create_football_product.html"__
+
+#  Feedback for the teaching assistant for Tutorial 2
+No Feedback from me as the tutorial already helped me alot :D
+
+
+
+
