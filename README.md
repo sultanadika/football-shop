@@ -182,3 +182,9 @@ How attackers exploit the website:
 - The attacker sends the user a malicious link or page in another tab.
 - That page submits a form request to the site (since the user is logged in, their cookies are still valid).
 - Without CSRF protection, the server would accept the request as if it came from the real user.
+
+
+# Step-by-Step Implementation for Assignment 3
+
+**Added 4 new views functions to view the added objects in XML, JSON, XML by ID, and JSON by ID formats.**
+
