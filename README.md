@@ -157,7 +157,7 @@ __In your opinion, which is better, XML or JSON? Why is JSON more popular than X
 In my opinion JSON is more efficient because JSON offers a more clear structure which is easier to learn for beginners, not like XML which is more complex. This reason is what makes JSON more popular than XML
 
 
-__ What is the purpose of the is_valid() method in Django forms, and why do we need it?__ 
+__What is the purpose of the is_valid() method in Django forms, and why do we need it?__ 
 
 The is_valid() method in Django forms is used to check whether the data submitted through the form is valid according to the form’s rules and constraints. 
 
@@ -167,3 +167,18 @@ is_valid() is needed because :
 - Ensures data integrity by checking constraints (like field types, min/max values, required fields).
 - Provides user feedback by showing errors when the input doesn’t meet the rules.
 
+__Why do we need a csrf_token when making forms in Django? What can happen if we don't include a csrf_token in a Django form? How can this be exploited by an attacker?__
+
+CSRF (Cross-Site Request Forgery token) is a security feature in Django that protects your forms from malicious requests made by attackers from outside your site.
+
+Why CSRF is needed:
+
+- It ensures that form submissions come only from trusted sources (your own site).
+- It prevents attackers from tricking users into unknowingly submitting malicious requests.
+
+How attackers exploit the website:
+
+- The user is logged into site in one browser tab.
+- The attacker sends the user a malicious link or page in another tab.
+- That page submits a form request to the site (since the user is logged in, their cookies are still valid).
+- Without CSRF protection, the server would accept the request as if it came from the real user.
