@@ -188,10 +188,9 @@ How attackers exploit the website:
 
 **Added 4 new views functions to view the added objects in XML, JSON, XML by ID, and JSON by ID formats.** (Implemented these functions in main/views.py)
 
-- __show_xml__
-  
-  '''python
-  def show_xml(request):
-    data = FootballProducts.objects.all()
-    xml_data = serializers.serialize("xml", data)
-    return HttpResponse(xml_data, content_type="application/xml")
+__show_xml__
+
+<pre> ```python def show_xml(request): data = FootballItem.objects.all() xml_data = serializers.serialize("xml", data) return HttpResponse(xml_data, content_type="application/xml") ``` </pre>
+
+- takes all FootballProducts object from the database
+- To return HTTPS respond with XML type of content
