@@ -7,8 +7,8 @@ urlpatterns = [
     path('', show_main, name='show_main'),
     path('create-product/', create_football_product, name='create_football_product'),
     path('product/<str:id>/', product_details, name='product_details'),
-    path('product/xml/', show_xml, name='show_xml'),
-    path('product/json/', show_json, name='show_json'),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
     path('product/xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('product/json/<int:id>/', show_json_by_id, name='show_json_by_id'),
 ]
