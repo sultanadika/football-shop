@@ -199,3 +199,47 @@ __show_xml__
 
 - takes all FootballProducts object from the database
 - To return HTTPS respond with XML type of content
+
+
+__show_json__
+
+<pre>
+  def show_json(request):
+    data = FootballProducts.objects.all()
+    json_data = serializers.serialize("json", data)
+    return HttpResponse(json_data, content_type="application/json")
+</pre>
+
+- return HTTPS respond with json type of content
+- and takes all FootballProducts object from the database
+
+__show_xml_by_id__
+
+<pre>
+def show_xml_by_id(request, id):
+    try:
+        data = FootballProducts.objects.filter(pk=id)
+        xml_data = serializers.serialize("xml", data)
+        return HttpResponse(xml_data, content_type="application/xml")
+    except FootballProducts.DoesNotExist:
+        return HttpResponse(status=404)
+</pre>
+
+- Include error handling when FootballProduct items does not exist
+- Accepts ID as a parameter
+
+__show_json_by_id__
+
+<pre>
+  def show_json_by_id(request, id):
+    try:
+        data = FootballProducts.objects.filter(pk=id)
+        json_data = serializers.serialize("json", data)
+        return HttpResponse(json_data, content_type="application/json")
+    except FootballProducts.DoesNotExist:
+        return HttpResponse(status=404)
+</pre>
+
+- Include error handling when FootballProduct items does not exist
+- Accepts ID as a parameter
+
