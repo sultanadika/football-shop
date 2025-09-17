@@ -243,3 +243,29 @@ __show_json_by_id__
 - Include error handling when FootballProduct items does not exist
 - Accepts ID as a parameter
 
+**Created URL routings for all 4 new views** (Implemented these functions in main/urls.py)
+
+<pre>
+  from django.urls import path
+from main.views import show_main, create_football_product, product_details, show_xml, show_json, show_xml_by_id, show_json_by_id
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+    path('create-product/', create_football_product, name='create_football_product'),
+    path('product/<str:id>/', product_details, name='product_details'),
+    path('product/xml/', show_xml, name='show_xml'),
+    path('product/json/', show_json, name='show_json'),
+    path('product/xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('product/json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+]
+</pre>
+
+__small addition__
+- create-product/ : create product purposes
+- product/<str:id> : product details by ID
+- product/xml/ : show items in xml format
+- product/json/ : show items in json format
+- product/xml/<int:id>/ : returns specific xml format item based on its ID
+- product/json/<int:id>/ : returns specific json format item based on its ID
