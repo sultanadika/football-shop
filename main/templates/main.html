@@ -81,8 +81,6 @@
                         {% if product.brand %} | <b>{{ product.brand }}</b>{% endif %}
                         {% if product.is_featured %} | <b>Featured</b>{% endif %}
                         | Price: Rp {{ product.price|floatformat:0 }}
-                        | Stock: {{ product.stock }}
-                        | Rating: {{ product.rating }}/10
                         | <i>Added on: {{ product.created_at|date:"d M Y H:i" }}</i>
                 </p>
 
