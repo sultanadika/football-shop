@@ -190,7 +190,12 @@ How attackers exploit the website:
 
 __show_xml__
 
-<pre> ```python def show_xml(request): data = FootballItem.objects.all() xml_data = serializers.serialize("xml", data) return HttpResponse(xml_data, content_type="application/xml") ``` </pre>
+<pre> 
+  def show_xml(request): 
+    data = FootballItem.objects.all() 
+    xml_data = serializers.serialize("xml", data)
+    return HttpResponse(xml_data, content_type="application/xml") 
+</pre>
 
 - takes all FootballProducts object from the database
 - To return HTTPS respond with XML type of content
