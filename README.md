@@ -260,13 +260,12 @@ urlpatterns = [
     path('product/xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('product/json/<int:id>/', show_json_by_id, name='show_json_by_id'),
 ]
-# <str:id> and <int:id> does not show in readme file
 </pre>
 
 __small addition__
 - create-product/ : create product purposes
-- product/<str:id> : product details by ID
+- product/str:id : product details by ID
 - product/xml/ : show items in xml format
 - product/json/ : show items in json format
-- product/xml/<int:id>/ : returns specific xml format item based on its ID
-- product/json/<int:id>/ : returns specific json format item based on its ID
+- product/xml/int:id/ : returns specific xml format item based on its ID
+- product/json/int:id/ : returns specific json format item based on its ID
