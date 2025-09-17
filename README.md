@@ -260,6 +260,7 @@ urlpatterns = [
     path('product/xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('product/json/<int:id>/', show_json_by_id, name='show_json_by_id'),
 ]
+# <str:id> and <int:id> does not show in readme file
 </pre>
 
 __small addition__
