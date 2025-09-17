@@ -143,3 +143,12 @@ No feedback from me, The tutorial is so easy to understand and i could say is fu
 
 # Assignment 3 
 
+__Why do we need data delivery in implementing a platform?__
+
+Data Delivery is Important when implementing a platform because with data delivery it allows information to move between the frontend (what user usually sees) and the backend (mostfully to store data), without the help of data delivery the web will just become a static site without any interactions available
+
+Without a proper data delivery on the website it can cause:
+- Delays and failures when it comes to users accessing the website
+- Its components cant communicate effectively
+
+
