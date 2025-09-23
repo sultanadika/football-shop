@@ -103,7 +103,7 @@ else:
     }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://sultanadika-shidqi-footballshop.pbp.cs.ui.ac.id"
+    'https://pbp.cs.ui.ac.id'
 ]
 
 # Password validation
