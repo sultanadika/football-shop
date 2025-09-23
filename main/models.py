@@ -13,3 +13,5 @@ class FootballProducts(models.Model):
     brand = models.CharField(max_length=100, blank=True, null=True, help_text="Brand name(ex: Puma, Under Armour, Nike)")
     stock = models.IntegerField(default=0, help_text="Available stock")
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
