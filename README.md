@@ -310,6 +310,18 @@ XML BY ID
 <img width="1460" height="965" alt="product xml by id" src="https://github.com/user-attachments/assets/2b6dc502-4fdc-4e07-b70a-16b368080b85" />
 
 
+# Assignment 4
+
+_Dummy Username and Passwords_ (this for now, will edit later)
+
+User     : testuserwebsite1
+Password : Password123keren
+
+User     : testuserwebsite2
+Password : Password123keren
+
+
+
 
 
 
