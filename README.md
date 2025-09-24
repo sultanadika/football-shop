@@ -371,8 +371,9 @@ Once authenticated, Django enforces permissions & groups:
   -  is_authenticated → simple check if user is logged in.
 Decorators:
   -  @login_required (User needs to be logged in inorder to do stuff in the website)
+  -  
 
-__ What are the benefits and drawbacks of using sessions and cookies in storing the state of a web application?__
+# What are the benefits and drawbacks of using sessions and cookies in storing the state of a web application?
 
 __Cookies__
 
@@ -402,7 +403,27 @@ Drawbacks:
 - Not shared across domains → sessions are tied to one app/server.
 - Slightly slower → extra DB/cache lookup for every request.
 
+# in web development, is the usage of cookies secure by default, or is there any potential risk that we should be aware of? How does Django handle this problem?
 
+No. By default, cookies are not inherently secure — they’re just small text stored in the browser. If not configured properly, they can be stolen, modified, or misused.
+
+__Risks of cookies:__
+- XSS (Cross-Site Scripting) → attacker injects JavaScript to steal cookies.
+- CSRF (Cross-Site Request Forgery) → attacker tricks browser into sending cookies to perform actions.
+- Man-in-the-Middle (MITM) attacks → if cookies are sent over HTTP (not HTTPS), they can be intercepted.
+- Session Hijacking → if a session cookie (sessionid) is stolen, attacker can impersonate the user.
+
+__How Django Handles Cookie Security:__
+- HttpOnly flag → prevents JavaScript from accessing cookies (mitigates XSS).
+- Django sets HttpOnly=True for session cookies by default.
+- Secure flag → ensures cookies are only sent over HTTPS.
+- CSRF protection → Django includes the {% csrf_token %} system to ensure cookies can’t be abused in CSRF attacks.
+
+
+# Step by Step Implementation:
+
+__Create User Registration__:
+<pre> ```python from django.shortcuts import render, redirect, get_object_or_404 from main.forms import FootballProductsForm from main.models import FootballProducts from django.core import serializers from django.http import HttpResponse from django.contrib.auth.forms import UserCreationForm, AuthenticationForm from django.contrib import messages from django.contrib.auth import authenticate, login, logout from django.contrib.auth.decorators import login_required import datetime from django.http import HttpResponseRedirect from django.urls import reverse ``` </pre>
 
 _Dummy Username and Passwords_ (this for now, will edit later)
 
