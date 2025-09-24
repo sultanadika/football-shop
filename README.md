@@ -347,7 +347,8 @@ Default messages are generic (“Please enter a correct username and password”
 4. Coupled to Django’s built-in User model
 Doesnt fit well with heavy authentication system
 
-__What is the difference between authentication and authorization? How does Django implement the two concepts?__
+
+# What is the difference between authentication and authorization? How does Django implement the two concepts?
 
 Authentication = Verifying who the user is. (Login process)
 Authorization = Controlling what the authenticated user is allowed to do. (Permissions & access control)
