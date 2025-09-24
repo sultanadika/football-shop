@@ -347,7 +347,29 @@ Default messages are generic (“Please enter a correct username and password”
 4. Coupled to Django’s built-in User model
 Doesnt fit well with heavy authentication system
 
+__What is the difference between authentication and authorization? How does Django implement the two concepts?__
 
+Authentication = Verifying who the user is. (Login process)
+Authorization = Controlling what the authenticated user is allowed to do. (Permissions & access control)
+
+How Django Implements the Two Concept (Authentication and Authorization):
+
+__Authentication in Django__
+
+- Django has the Authentication System inside django.contrib.auth.
+  It provides: User model (with fields: username, password, email, etc.).
+
+- Built-in functions:
+   - authenticate(request, username, password) 
+   - login(request, user) 
+   - logout(request)
+
+__Authorization in Django__
+
+Once authenticated, Django enforces permissions & groups:
+  -  is_authenticated → simple check if user is logged in.
+Decorators:
+  -  @login_required (User needs to be logged in inorder to do stuff in the website)
 
 
 _Dummy Username and Passwords_ (this for now, will edit later)
