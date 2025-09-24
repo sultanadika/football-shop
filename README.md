@@ -312,6 +312,44 @@ XML BY ID
 
 # Assignment 4
 
+__What is Django's AuthenticationForm? Explain its advantages and disadvantages__
+
+AuthenticationForm is a built-in form from django.contrib.auth.forms and it’s used for handling user login.
+Under the hood, it has two fields:
+- username
+- password
+
+__Advantages of AuthenticationForm__
+
+- 1. Well Secured
+Handles password validation securely (using Django’s hashing).
+Protects against timing attacks and common security flaws.
+
+2. Ready to use
+No need to build own login form
+
+3. Integration with Django’s auth system
+Works seamlessly with login() and authenticate().
+Supports features like is_active, user permissions, etc.
+
+__Disadvantages of AuthenticationForm__
+
+1. Rigid fields
+Only supports username + password by default.
+must be extend inorder to login with email/phone number
+
+2. Basic UI
+No styling — it just provides form fields. You must customize the HTML rendering.
+
+3.Limited error messages
+Default messages are generic (“Please enter a correct username and password”). 
+
+4. Coupled to Django’s built-in User model
+Doesnt fit well with heavy authentication system
+
+
+
+
 _Dummy Username and Passwords_ (this for now, will edit later)
 
 User     : testuserwebsite1
