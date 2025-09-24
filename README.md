@@ -321,7 +321,7 @@ Under the hood, it has two fields:
 
 __Advantages of AuthenticationForm__
 
-- 1. Well Secured
+1. Well Secured
 Handles password validation securely (using Django’s hashing).
 Protects against timing attacks and common security flaws.
 
@@ -336,12 +336,12 @@ __Disadvantages of AuthenticationForm__
 
 1. Rigid fields
 Only supports username + password by default.
-must be extend inorder to login with email/phone number
+Must be extend inorder to login with email/phone number
 
 2. Basic UI
 No styling — it just provides form fields. You must customize the HTML rendering.
 
-3.Limited error messages
+ 3. Limited error messages
 Default messages are generic (“Please enter a correct username and password”). 
 
 4. Coupled to Django’s built-in User model
