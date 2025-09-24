@@ -371,6 +371,37 @@ Once authenticated, Django enforces permissions & groups:
 Decorators:
   -  @login_required (User needs to be logged in inorder to do stuff in the website)
 
+__ What are the benefits and drawbacks of using sessions and cookies in storing the state of a web application?__
+
+__Cookies__
+
+Benefits:
+- Stored on client side → no server storage needed.
+- Lightweight & fast → small key-value pairs (like theme=dark, lang=en).
+- Persistent → can survive browser restarts (if not expired).
+- Cross-request availability → automatically sent with each HTTP request to the same domain.
+
+Drawbacks:
+- Security risks → vulnerable to theft via XSS if not secured (e.g., stolen cookies can hijack sessions).
+- Size limit → usually max 4KB per cookie.
+- Can be disabled by users in browsers.
+- Visible to client → not good for sensitive data (like passwords).
+
+__Sessions__
+
+Benefits:
+- Secure → sensitive data is stored server-side (client only gets a session ID cookie).
+- Flexible storage → can be stored in DB, cache, or files.
+- Scalable → can store larger data than cookies (not limited to 4KB).
+- Built-in expiration → can automatically log users out after inactivity.
+
+Drawbacks:
+- Requires server storage → increases memory/DB usage as users grow.
+- Session management overhead → need cleanup of expired sessions.
+- Not shared across domains → sessions are tied to one app/server.
+- Slightly slower → extra DB/cache lookup for every request.
+
+
 
 _Dummy Username and Passwords_ (this for now, will edit later)
 
