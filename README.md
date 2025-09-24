@@ -496,9 +496,77 @@ app_name = 'main'
 ]   
 </pre>
 
+__connect product model with user model__:
 
+- configured the models.py
+<pre>
+from django.db import models
+from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator # for rating
 
-_Dummy Username and Passwords_ (this for now, will edit later)
+class FootballProducts(models.Model):
+    name = models.CharField(max_length=120, help_text="Item Name")
+    description = models.TextField(help_text="Item Description")
+    thumbnail = models.URLField(max_length=330, help_text="Image URL")
+    price = models.IntegerField(help_text="Price(rupiah)")
+    category = models.CharField(max_length=50, help_text="Item category (ex: Ball, Boots, Shirt, etc)")
+    is_featured = models.BooleanField(default=False, help_text="a Featured Item?")
+    rating = models.IntegerField(default=0,validators=[MinValueValidator(0), MaxValueValidator(10)],help_text="Drop a rating (0-10)")
+    brand = models.CharField(max_length=100, blank=True, null=True, help_text="Brand name(ex: Puma, Under Armour, Nike)")
+    stock = models.IntegerField(default=0, help_text="Available stock")
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+</pre>
+Added: user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+- Make migrations
+  do python manage.py makemigration and python manage.py migrate
+
+- Updated show_main function in views.py
+<pre>
+  @login_required(login_url='/login')
+def show_main(request):
+    filter_type = request.GET.get("filter", "all")  # default 'all'
+
+    if filter_type == "all":
+        football_products = FootballProducts.objects.all()
+    else:
+        football_products = FootballProducts.objects.filter(user=request.user)
+
+    context = {
+        'npm' : '2406365326',
+        'name': request.user.username,
+        'class': 'PBP KKI',
+        'football_products' : football_products,
+        'last_login': request.COOKIES.get('last_login', 'Never')
+    }
+
+    return render(request, "main.html", context)
+
+</pre>
+  - updated create_football_product function in views.py
+<pre>
+    @login_required(login_url='/login')
+def create_football_product(request):
+    form = FootballProductsForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        football_product = form.save(commit=False)   
+        football_product.user = request.user         
+        football_product.save()                      
+        return redirect('main:show_main')
+
+    context = {
+        'form': form
+    }
+    return render(request, "create_football_product.html", context)
+</pre>
+
+__Pushed the website to github and Pacil Web Service__
+- pushed to github branch master
+- pushed to pacil web service
+
+__Created Dummy User and Password for website__
 
 User     : testuserwebsite1
 Password : Password123keren
