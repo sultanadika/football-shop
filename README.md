@@ -474,76 +474,29 @@ def register(request):
 </pre>
 
 - Created file named register.html to link it to the register function
+- Created login.html for users to login
+
+- configurate the path in urls.py
+  <pre>
+    from django.urls import path
+from main.views import show_main, create_football_product, product_details, show_xml, show_json, show_xml_by_id, show_json_by_id, register, login_user, logout_user
+
+app_name = 'main'
 <pre>
-  {% extends 'base.html' %}
-
-{% block meta %}
-<title>Register</title>
-{% endblock meta %}
-
-{% block content %}
-
-<div>
-  <h1>Register</h1>
-
-  <form method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input type="submit" name="submit" value="Register" /></td>
-      </tr>
-    </table>
-  </form>
-
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</div>
-
-{% endblock content %}
+urlpatterns = [
+    path('', show_main, name='show_main'),
+    path('create-product/', create_football_product, name='create_football_product'),
+    path('product/<str:id>/', product_details, name='product_details'),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
+    path('product/xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('product/json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+    path('register/', register, name='register'),
+    path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout')
+]   
 </pre>
 
-- Created login.html for users to login 
-<pre>
-  {% extends 'base.html' %}
-
-{% block meta %}
-<title>Login</title>
-{% endblock meta %}
-
-{% block content %}
-<div class="login">
-  <h1>Login</h1>
-
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
-
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
-</div>
-
-{% endblock content %}
-</pre>
 
 
 _Dummy Username and Passwords_ (this for now, will edit later)
