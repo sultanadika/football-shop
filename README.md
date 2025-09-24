@@ -423,7 +423,16 @@ __How Django Handles Cookie Security:__
 # Step by Step Implementation:
 
 __Create User Registration__:
-<pre> ```python from django.shortcuts import render, redirect, get_object_or_404 from main.forms import FootballProductsForm from main.models import FootballProducts from django.core import serializers from django.http import HttpResponse from django.contrib.auth.forms import UserCreationForm, AuthenticationForm from django.contrib import messages from django.contrib.auth import authenticate, login, logout from django.contrib.auth.decorators import login_required import datetime from django.http import HttpResponseRedirect from django.urls import reverse ``` </pre>
+<pre> 
+  from django.shortcuts import render, redirect, get_object_or_404 
+  from main.forms import FootballProductsForm 
+  from main.models import FootballProducts from django.core import serializers 
+  from django.http import HttpResponse from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
+  from django.contrib import messages from django.contrib.auth import authenticate, login, logout 
+  from django.contrib.auth.decorators import login_required import datetime 
+  from django.http import HttpResponseRedirect     
+  from django.urls import reverse 
+</pre>
 
 _Dummy Username and Passwords_ (this for now, will edit later)
 
