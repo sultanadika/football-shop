@@ -13,18 +13,5 @@
         {% include 'navbar.html' %}
     {% endif %}
     {% block content %}{% endblock content %}
-
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.querySelector(".mobile-menu-button");
-        const menu = document.querySelector(".mobile-menu");
-        if (btn && menu) {
-          btn.addEventListener("click", () => {
-            menu.classList.toggle("hidden");
-          });
-        }
-      });
-    </script>
   </body>
 </html>
