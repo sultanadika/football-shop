@@ -602,6 +602,14 @@ CSS Selector Priority Order:
   div { ... },
    h1 { ... }, 
    ::before, ::after.
+
+Special Rules
+
+*!important*
+
+Overrides normal specificity rules.
+But if two !important rules conflict, then specificity decides.
+If two selectors have the exact same specificity, the one written later in the CSS file takes precedence.
   
 
 
