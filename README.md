@@ -640,13 +640,71 @@ Because twitter is heavily mobile-driven. A responsive design ensures consistent
 
 2. YouTube
 
-Responsive Behavior:
 Desktop mode, YouTube shows grid thumbnails + sidebar navigation. Mobile mode, the sidebar becomes a bottom tab bar, and videos take full width.
 
 Reason:
 YouTube’s massive mobile audience means responsive design is key to ensuring videos remain the focus, no matter the screen size.
 
 
+Applications without Responsive Design: 
+
+1. Old Government Websites (Usually built with HTML only (1990-2000s)
+
+Many older sites were built only for desktop screens, showing fixed-width layouts that require horizontal scrolling on mobile.
+
+Reason:
+They were created before mobile became dominant and never updated. They rely on outdated frameworks, so poor UX persists on smaller devices
+
+2. Some University/College Portals
+
+Course registration systems often don’t resize properly, with small buttons and forms that break on mobile.
+
+Reason:
+These portals are usually developed for internal use with a desktop-first mindset, prioritizing functionality over accessibility. Maintenance budgets are limited, so responsiveness is often ignored.
+
+# Differences between margin, border, and padding, and how to implement them
+1. Margin
+
+What it is:
+The outer space outside the element’s border.
+
+Purpose:
+Creates spacing between elements.
+
+Doesn’t affect:
+The element’s size or background color (margin is always transparent).
+
+2. Border
+
+What it is:
+The edge line surrounding the padding and content.
+
+Purpose:
+Visually outlines the element.
+
+Affects size:
+Borders add to the total element width/height.
+
+3. Padding
+
+What it is:
+The inner space between the content and the border.
+
+Purpose:
+Creates breathing room inside the box.
+
+Affects background:
+Padding inherits the element’s background color or image.
+
+Implementation Example of them:
+
+<pre>
+  .box {
+  margin: 20px;             /* gives space around the box */
+  border: 5px solid blue;   /* this border around padding & content */
+  padding: 10px;            /* create a space between text and border */
+}
+</pre>
 
 
 
