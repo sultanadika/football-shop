@@ -1,124 +1,75 @@
-<head>
-    <title>Football Shop</title>
-    <style>
-        body {
-            font-size: 16px;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 0;
-        }
+{% extends 'base.html' %}
+{% load static %}
 
-        .creatordetails {
-            max-width: 600px;
-            margin: 50px auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
+{% block meta %}
+<title>⚽ Soccers Apparel - Shop</title>
+{% endblock meta %}
 
-        h1 {
-            text-align: center;
-            font-size: 32px;
-            padding-bottom: 10px;
-            color: black;
-        }
+{% block content %}
+{% include 'navbar.html' %}
 
-        h5 {
-            font-size: 18px;
-            color: grey;
-            margin: 0;
-        }
+<div class="bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800 w-full pt-20 min-h-screen text-white relative overflow-hidden">
 
-        h6 {
-            font-size: 12px;
-            color: black;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
+  <!-- Floating glowing background -->
+  <div class="absolute w-72 h-72 bg-blue-600/20 rounded-full blur-3xl top-20 left-10 animate-pulse"></div>
+  <div class="absolute w-96 h-96 bg-blue-400/10 rounded-full blur-3xl bottom-10 right-10 animate-pulse"></div>
 
-        p {
-            padding-left: 5px;
-            border-left: 3px solid navy;
-        }
-    </style>
-</head>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-<body>
-    {% extends 'base.html' %}
-    {% block content %}
+    <!-- Header Section -->
+    <div class="mb-12 text-center animate-fade-in-down">
+      <h1 class="text-4xl font-extrabold text-white mb-3 drop-shadow-lg">
+        ⚽ Welcome to <span class="text-blue-300">Soccers Apparel</span> ⚽
+      </h1>
+      <p class="text-blue-200 text-lg">Find the best football gear and apparel for your game</p>
+    </div>
 
-    <div class="creatordetails">
-        <!-- Store Name -->
-        <h1>⚽Soccer Apparel⚽</h1>
-
-        <!-- NPM -->
-        <h5>NPM: </h5>
-        <p>{{ npm }}</p>
-
-        <!-- Name -->
-        <h5>Name: </h5>
-        <p>{{ name }}</p>
-
-        <!-- Class -->
-        <h5>Class: </h5>
-        <p>{{ class }}</p>
-
-<!-- Add Product Button -->
-    <a href="{% url 'main:create_football_product' %}">
-        <button>+ Add Football Product</button>
-    </a>
-
-    <a href="{% url 'main:logout' %}">
-        <button>Logout</button>
-    </a>
-    <h6>Last login session: {{ last_login }}</h6>
-
-    <a href="?filter=all">
-        <button type="button">All Products</button>
-    </a>
-
-    <a href="?filter=my">
-        <button type="button">My Product</button>
-    </a>
-
-    <hr>
-        {% if not football_products %}
-            <p>No football products available in the shop.</p>
-        {% else %}
-
-        {% for product in football_products %}
-        <div>
-    
-            <h2><a href="{% url 'main:product_details' product.id %}">{{ product.name }}</a></h2>
-
-    
-                <p>
-                    <b>{{ product.category }}</b>
-                        {% if product.brand %} | <b>{{ product.brand }}</b>{% endif %}
-                        {% if product.is_featured %} | <b>Featured</b>{% endif %}
-                        | Price: Rp {{ product.price|floatformat:0 }}
-                        | <i>Added on: {{ product.created_at|date:"d M Y H:i" }}</i>
-                </p>
-
-    
-                {% if product.thumbnail %}
-            <img src="{{ product.thumbnail }}" alt="thumbnail" width="150" height="100">
-            <br />
-                {% endif %}
-
-    
-            <p>{{ product.description|truncatewords:25 }}...</p>
-
-    
-            <p><a href="{% url 'main:product_details' product.id %}"><button>View Details</button></a></p>
+    <!-- Filter Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-12 bg-blue-800/70 rounded-xl border border-blue-600 p-5 shadow-lg backdrop-blur-sm animate-fade-in-up">
+      <div class="flex space-x-3 mb-4 sm:mb-0">
+        <a href="?" 
+          class="{% if request.GET.filter == 'all' or not request.GET.filter  %} bg-blue-600 text-white{% else %}bg-white text-blue-800 border border-blue-300{% endif %} 
+          px-5 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:bg-blue-700 hover:text-white shadow-md">
+          All Products
+        </a>
+        <a href="?filter=my" 
+          class="{% if request.GET.filter == 'my' %} bg-blue-600 text-white{% else %}bg-white text-blue-800 border border-blue-300{% endif %} 
+          px-5 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:bg-blue-700 hover:text-white shadow-md">
+          My Products
+        </a>
+      </div>
+      {% if user.is_authenticated %}
+        <div class="text-sm text-blue-200 italic">
+          Last login: <span class="font-semibold">{{ last_login }}</span>
         </div>
+      {% endif %}
+    </div>
 
-    <hr>
-{% endfor %}
-
-{% endif %}
+    <!-- Product Grid -->
+    {% if not football_products %}
+      <div class="bg-blue-900/80 rounded-xl border border-blue-700 p-12 text-center shadow-lg animate-fade-in-up">
+        <div class="w-32 h-32 mx-auto mb-6">
+          <img src="https://jalongi.com/public/assets/images/product_not_found.jpeg" alt="No products available" class="w-full h-full object-contain">
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">No products available</h3>
+        <p class="text-blue-300 mb-6">Be the first to add your football product!</p>
+        <a href="{% url 'main:create_football_product' %}" 
+           class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 hover:scale-105 transition-all shadow-md">
+          + Add Product
+        </a>
+      </div>
+    {% else %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in-up">
+        {% for product in football_products %}
+          <div class="transform transition-all duration-300 hover:scale-105 hover:-translate-y-2">
+            {% include 'card_product.html' with product=product %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock content %}
+
+

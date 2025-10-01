@@ -15,3 +15,8 @@ class FootballProducts(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
+
+class Car(models.Model):
+    name = models.CharField(max_length=255, help_text="item Name")
+    brand = models.CharField(max_length=255, help_text="item Name")
+    stock= models.IntegerField(help_text="Stock: ")

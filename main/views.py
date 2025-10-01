@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from main.forms import FootballProductsForm
-from main.models import FootballProducts
+from main.forms import FootballProductsForm,CarForm
+from main.models import FootballProducts,Car
 from django.core import serializers
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -115,3 +115,40 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def create_car(request):
+    if request.method == "POST":
+        form = CarForm(request.POST)
+
+        if form.is_valid():
+            car_form = Car.objects.create(name = form.cleaned_data["name"],
+            brand = form.cleaned_data["brand"],
+            stock = form.cleaned_data["stock"])
+            return render(request, "create_car.html", {"form": form, "car_form": car_form})
+    else:
+        form = CarForm()
+        return render(request, "create_car.html", {"form": form})
+
+def edit_product(request, id):
+    product = get_object_or_404(FootballProducts, pk=id)
+    form = FootballProductsForm(request.POST or None, instance=product)
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:show_main')
+
+    context = {
+    'form': form
+    }
+
+    return render(request, "edit_footballshop.html", context)
+
+def delete_product(request, id):
+    product = get_object_or_404(FootballProducts, pk=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def about_shop(request):
+    return render(request, "about_shop.html")
+
+def contact_shop(request):
+    return render(request, "contact_shop.html")

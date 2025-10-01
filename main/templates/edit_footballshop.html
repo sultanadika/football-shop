@@ -1,24 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block meta %}
-<title>Create Product - ⚽Soccers Apparel⚽</title>
+<title>Edit Product - ⚽Soccers Apparel⚽</title>
 {% endblock meta %}
 
 {% block content %}
 <div class="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 w-full min-h-screen">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     
-    <!-- Go Back Navigation -->
+    <!-- Back Navigation -->
     <div class="mb-6">
       <a href="{% url 'main:show_main' %}" class="text-blue-400 hover:text-blue-300 font-medium transition-colors">
-        ← Back to Home Page
+        ← Back to Products
       </a>
     </div>
     
-    <!-- Form for Users -->
+    <!-- Form -->
     <div class="bg-gray-800/90 backdrop-blur-sm rounded-xl border border-gray-700 shadow-lg p-8 sm:p-10">
       <div class="mb-8 text-center">
-        <h1 class="text-3xl font-extrabold text-white mb-2">Create New Product</h1>
-        <p class="text-gray-400">Add your football product to ⚽Soccers Apparel⚽</p>
+        <h1 class="text-3xl font-extrabold text-white mb-2">Edit Product</h1>
+        <p class="text-gray-400">Update your product details for ⚽Soccers Apparel⚽</p>
       </div>
       
       <form method="POST" class="space-y-6">
@@ -29,7 +31,13 @@
               {{ field.label }}
             </label>
             <div class="w-full">
-              {{ field }}
+              {% if field.name == "description" %}
+                <!-- Keep description box normal -->
+                {{ field }}
+              {% else %}
+                <!-- Style other fields as long white inputs -->
+                {{ field }}
+              {% endif %}
             </div>
             {% if field.help_text %}
               <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
@@ -40,7 +48,6 @@
           </div>
         {% endfor %}
         
-        <!-- Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-700">
           <a href="{% url 'main:show_main' %}" 
              class="order-2 sm:order-1 px-6 py-3 border border-gray-600 text-gray-300 rounded-md font-medium hover:bg-gray-700 transition-colors text-center">
@@ -48,7 +55,7 @@
           </a>
           <button type="submit" 
                   class="order-1 sm:order-2 flex-1 bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition-colors">
-            Publish Product
+            Update Product
           </button>
         </div>
       </form>
