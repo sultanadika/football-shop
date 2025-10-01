@@ -574,6 +574,32 @@ Password : Password123keren
 User     : testuserwebsite2
 Password : Password123keren
 
+# ASSIGNMENT 5
+
+# CSS Selector Priority: If multiple CSS selectors target an HTML element, explain the priority order for CSS selector selection
+
+CSS Selector Priority Order:
+
+- Inline styles
+Example: <div style="color:red;">
+Inline styles have the highest priority .
+IDs (#id)
+Example: #main { color: blue; }
+More specific than classes, attributes, and elements.
+
+- Classes, Attributes, and Pseudo-classes
+Examples:
+Class: .button{ ... }
+Attribute: [type="text"]{ ... }
+Pseudo-class: :hover, :first-child
+Lower than IDs, higher than element selectors.
+
+- Elements and Pseudo-elements
+Examples:
+div { ... }
+h1 { ... }
+::before, ::after
+Lowest specificity.
 
 
 
