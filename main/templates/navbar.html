@@ -47,7 +47,7 @@
 
       <!-- Mobile Menu Button -->
       <div class="md:hidden flex items-center">
-        <button class="mobile-menu-button p-2 text-gray-200 hover:text-blue-400 transition-colors">
+        <button type="button" class="mobile-menu-button p-2 text-gray-200 hover:text-blue-400 transition-colors">
           <span class="sr-only">Open menu</span>
           <div class="w-6 h-6 flex flex-col justify-center items-center">
             <span class="bg-current block h-0.5 w-6 rounded-sm"></span>
@@ -66,7 +66,7 @@
       <a href="{% url 'main:show_main' %}" class="block text-gray-200 hover:text-blue-400 font-medium py-2 transition-colors">Shop</a>
       <a href="{% url 'main:about_shop' %}" class="block text-gray-200 hover:text-blue-400 font-medium py-2 transition-colors">About</a>
       <a href="{% url 'main:contact_shop' %}" class="block text-gray-200 hover:text-blue-400 font-medium py-2 transition-colors">Contact</a>
-    </div>
+      
       <!-- Mobile User Section -->
       <div class="border-t border-blue-800 pt-4">
         {% if user.is_authenticated %}
