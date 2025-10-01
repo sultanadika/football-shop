@@ -12,6 +12,22 @@
     {% if not request.path == '/login/' and not request.path == '/register/' %}
         {% include 'navbar.html' %}
     {% endif %}
+
     {% block content %}{% endblock content %}
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("mobile-menu-button");
+        const menu = document.getElementById("mobile-menu");
+
+        if (btn && menu) {
+          btn.addEventListener("click", function () {
+            menu.classList.toggle("hidden");
+          });
+        }
+      });
+    </script>
   </body>
 </html>
+

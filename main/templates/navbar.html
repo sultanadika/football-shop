@@ -46,27 +46,33 @@
       </div>
 
       <!-- Mobile Menu Button -->
-      <div class="md:hidden flex items-center">
-        <button type="button" class="mobile-menu-button p-2 text-gray-200 hover:text-blue-400 transition-colors">
-          <span class="sr-only">Open menu</span>
-          <div class="w-6 h-6 flex flex-col justify-center items-center">
+      <!-- Mobile Menu Button (inline onclick for immediate fix) -->
+    <div class="md:hidden flex items-center">
+    <button
+        id="mobile-menu-button"
+        type="button"
+        onclick="(function(btn){const m=document.getElementById('mobile-menu'); if(!m) return; m.classList.toggle('hidden'); btn.setAttribute('aria-expanded', String(!m.classList.contains('hidden')));})(this)"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        class="p-2 text-gray-200 hover:text-blue-400 transition-colors"
+  >
+        <span class="sr-only">Open menu</span>
+        <div class="w-6 h-6 flex flex-col justify-center items-center">
             <span class="bg-current block h-0.5 w-6 rounded-sm"></span>
             <span class="bg-current block h-0.5 w-6 rounded-sm my-0.5"></span>
             <span class="bg-current block h-0.5 w-6 rounded-sm"></span>
-          </div>
-        </button>
-      </div>
-    </div>
-  </div>
+        </div>
+  </button>
+</div>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu hidden bg-blue-950 border-t border-blue-900">
+  <div id="mobile-menu" class=" hidden bg-blue-950 border-t border-blue-900">
     <div class="px-6 py-4 space-y-4">
       <!-- Mobile Navigation Links -->
       <a href="{% url 'main:show_main' %}" class="block text-gray-200 hover:text-blue-400 font-medium py-2 transition-colors">Shop</a>
       <a href="{% url 'main:about_shop' %}" class="block text-gray-200 hover:text-blue-400 font-medium py-2 transition-colors">About</a>
       <a href="{% url 'main:contact_shop' %}" class="block text-gray-200 hover:text-blue-400 font-medium py-2 transition-colors">Contact</a>
-      
+
       <!-- Mobile User Section -->
       <div class="border-t border-blue-800 pt-4">
         {% if user.is_authenticated %}
@@ -74,35 +80,19 @@
             <div class="font-medium text-white">{{ name }}</div>
             <div class="text-sm text-white">{{ npm }} - {{ class }}</div>
           </div>
-          <a href="{% url 'main:logout' %}" class="block bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded text-center transition-colors">
-            Logout
-          </a>
+          <a href="{% url 'main:logout' %}" class="block bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded text-center transition-colors">Logout</a>
         {% else %}
           <div class="space-y-3">
-            <a href="{% url 'main:login' %}" class="block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded text-center transition-colors">
-              Login
-            </a>
-            <a href="{% url 'main:register' %}" class="block bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-4 rounded text-center transition-colors">
-              Register
-            </a>
+            <a href="{% url 'main:login' %}" class="block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded text-center transition-colors">Login</a>
+            <a href="{% url 'main:register' %}" class="block bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-4 rounded text-center transition-colors">Register</a>
           </div>
         {% endif %}
       </div>
     </div>
   </div>
-  <!-- Mobile Menu Toggle Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.querySelector(".mobile-menu-button");
-        const menu = document.querySelector(".mobile-menu");
-        if (btn && menu) {
-          btn.addEventListener("click", () => {
-            menu.classList.toggle("hidden");
-          });
-        }
-      });
-    </script>
 </nav>
+
+
 
 
 
