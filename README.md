@@ -605,11 +605,9 @@ CSS Selector Priority Order:
 
 Special Rules
 
-*!important*
+!important
 
-Overrides normal specificity rules.
-But if two !important rules conflict, then specificity decides.
-If two selectors have the exact same specificity, the one written later in the CSS file takes precedence.
+Overrides normal specificity rules. But if two !important rules conflict, then specificity decides. If two selectors have the exact same specificity, the one written later in the CSS file takes precedence.
   
 
 
