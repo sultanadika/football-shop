@@ -725,7 +725,6 @@ Example:
 Implementation Steps:  Checklist step-by-step
 
 - SET UP TAILWIND ON BASE.HTML
-  <img width="530" height="158" alt="image" src="https://github.com/user-attachments/assets/5ebed791-3e33-4136-a00b-4aeb2cffa4e7" />
 
 - MADE FILES THAT HAS A FUNCTION FOR (CONSISTS OF VIEWS.PY, MODELS.PY, HTML FILES, URLS.PY)
   1. edit_product
