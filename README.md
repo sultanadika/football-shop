@@ -722,6 +722,32 @@ Example:
 <img width="725" height="523" alt="image" src="https://github.com/user-attachments/assets/dbecb05a-fcdf-4b11-84ea-82a8dd829cfb" />
 
 
+Implementation Steps:  Checklist step-by-step
+
+- SET UP TAILWIND ON BASE.HTML
+  <img width="530" height="158" alt="image" src="https://github.com/user-attachments/assets/5ebed791-3e33-4136-a00b-4aeb2cffa4e7" />
+
+- MADE FILES THAT HAS A FUNCTION FOR (CONSISTS OF VIEWS.PY, MODELS.PY, HTML FILES, URLS.PY)
+  1. edit_product
+  2. create_product
+  3. navigation bar
+  4. login
+  5. logout
+  6. about (without model cause only consist extra info)
+  7. contact (without model cause only consist extra info)
+  8. product_detail
+
+- DESIGNED THE WEBSITES WITH TAILWIND CSS (ON ITS HTML FILES)
+- RENDERED THE WEBSITE ON VIEWS.PY AND SHOWED THE PATH WITH URLS.PY
+- APPLIED CARD DESIGN ON EACH PRODUCT ALSO APPLIED EDIT OR DELETE FUNCTION
+- APPLIED IMAGE WHEN NO PRODUCT IS AVAILABLE
+- ADDED NAVIGATION BAR FOR MOBILE AND DESKTOP
+- DEPLOYED WEBSITE TO PWS AND PUSHED CODE TO GITHUB AND MADE README.MD
+  
+     
+  
+
+
 
 
 
