@@ -611,7 +611,7 @@ Overrides normal specificity rules. But if two !important rules conflict, then s
 
 # Why is responsive design important in web application development?
 
-1. Device Diversity
+1. Adaptive to any Device 
 
 Users access websites from desktops, laptops, tablets, and smartphones — all with different screen sizes and resolutions. Responsive design ensures the site adapts automatically so it looks and works well on any device.
   
@@ -622,6 +622,34 @@ A non-responsive site may force users to zoom, scroll horizontally, or struggle 
 3. Mobile-First Era
 
 The majority of internet traffic now comes from mobile devices. If a website isn’t mobile-friendly, users often leave immediately.
+
+4. Able to adapt with future devices 
+
+New devices with varying screen sizes keep emerging (foldable phones, smart TVs, etc.). A responsive approach ensures the design can adapt to future devices without starting from scratch.
+
+# Examples of applications that have and haven't implemented responsive design (Explain the reasons behind your examples)
+
+Applications with Responsive Design:
+
+1. Twitter 
+
+Desktop mode, theres a three-column layout (sidebar, feed, trends). Mobile mode, it collapses into a single scroll feed, with the menu hidden behind a hamburger icon.
+
+Reason:
+Because twitter is heavily mobile-driven. A responsive design ensures consistent user experience across devices, keeping users engaged without needing a separate mobile app for browsing.
+
+2. YouTube
+
+Responsive Behavior:
+Desktop mode, YouTube shows grid thumbnails + sidebar navigation. Mobile mode, the sidebar becomes a bottom tab bar, and videos take full width.
+
+Reason:
+YouTube’s massive mobile audience means responsive design is key to ensuring videos remain the focus, no matter the screen size.
+
+
+
+
+
 
 
 
