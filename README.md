@@ -713,28 +713,15 @@ Implementation Example of them:
 Flexbox is a one-dimensional layout system that arranges items in a row or column. It’s best for aligning and distributing space between elements, like navbars, buttons, or lists.
 Example:
 
-/*HTML FILE*/
-<pre>
-  <div class="flex-container">
-    <div class="item">1</div>
-    <div class="item">2</div>
-    <div class="item">3</div>
-  </div>
-</pre>
+<img width="577" height="554" alt="image" src="https://github.com/user-attachments/assets/59585726-b566-484f-8e7e-e6ad12d60879" />
 
-/*CSS FILE*/
-<pre>
-  .flex-container {
-  display: flex;              /* activate flexbox */
-  justify-content: space-around; /* to give spacing between items */
-  align-items: center;        /* align the items center */
-}
+- Grid:
+Grid is a two-dimensional layout system that works with rows and columns simultaneously. It’s ideal for building full web page layouts, dashboards, or galleries where precise placement is needed.
+Example:
 
-.item {
-  background: lightblue;  /* set background */
-  padding: 20px;         /* gives space for 20px */
-}
-</pre>
+<img width="725" height="523" alt="image" src="https://github.com/user-attachments/assets/dbecb05a-fcdf-4b11-84ea-82a8dd829cfb" />
+
+
 
 
 
