@@ -701,10 +701,42 @@ Implementation Example of them:
 <pre>
   .box {
   margin: 20px;             /* gives space around the box */
-  border: 5px solid blue;   /* this border around padding & content */
+  border: 5px solid white;  /* this border around padding & content */
   padding: 10px;            /* create a space between text and border */
 }
 </pre>
+
+# Explain the concepts of flexbox and grid layout along with their uses # 
+
+-Flexbox:
+
+Flexbox is a one-dimensional layout system that arranges items in a row or column. It’s best for aligning and distributing space between elements, like navbars, buttons, or lists.
+Example:
+
+/*HTML FILE*/
+<pre>
+  <div class="flex-container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+</pre>
+
+/*CSS FILE*/
+<pre>
+  .flex-container {
+  display: flex;              /* activate flexbox */
+  justify-content: space-around; /* to give spacing between items */
+  align-items: center;        /* align the items center */
+}
+
+.item {
+  background: lightblue;  /* set background */
+  padding: 20px;         /* gives space for 20px */
+}
+</pre>
+
+
 
 
 
