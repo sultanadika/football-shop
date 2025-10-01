@@ -310,6 +310,272 @@ XML BY ID
 <img width="1460" height="965" alt="product xml by id" src="https://github.com/user-attachments/assets/2b6dc502-4fdc-4e07-b70a-16b368080b85" />
 
 
+# Assignment 4
+
+__What is Django's AuthenticationForm? Explain its advantages and disadvantages__
+
+AuthenticationForm is a built-in form from django.contrib.auth.forms and it’s used for handling user login.
+Under the hood, it has two fields:
+- username
+- password
+
+__Advantages of AuthenticationForm__
+
+1. Well Secured
+Handles password validation securely (using Django’s hashing).
+Protects against timing attacks and common security flaws.
+
+2. Ready to use
+No need to build own login form
+
+3. Integration with Django’s auth system
+Works seamlessly with login() and authenticate().
+Supports features like is_active, user permissions, etc.
+
+__Disadvantages of AuthenticationForm__
+
+1. Rigid fields
+Only supports username + password by default.
+Must be extend inorder to login with email/phone number
+
+2. Basic UI
+No styling — it just provides form fields. You must customize the HTML rendering.
+
+ 3. Limited error messages
+Default messages are generic (“Please enter a correct username and password”). 
+
+4. Coupled to Django’s built-in User model
+Doesnt fit well with heavy authentication system
+
+
+# What is the difference between authentication and authorization? How does Django implement the two concepts?
+
+Authentication = Verifying who the user is. (Login process)
+Authorization = Controlling what the authenticated user is allowed to do. (Permissions & access control)
+
+How Django Implements the Two Concept (Authentication and Authorization):
+
+__Authentication in Django__
+
+- Django has the Authentication System inside django.contrib.auth.
+  It provides: User model (with fields: username, password, email, etc.).
+
+- Built-in functions:
+   - authenticate(request, username, password) 
+   - login(request, user) 
+   - logout(request)
+
+__Authorization in Django__
+
+Once authenticated, Django enforces permissions & groups:
+  -  is_authenticated → simple check if user is logged in.
+Decorators:
+  -  @login_required (User needs to be logged in inorder to do stuff in the website)
+  -  
+
+# What are the benefits and drawbacks of using sessions and cookies in storing the state of a web application?
+
+__Cookies__
+
+Benefits:
+- Stored on client side → no server storage needed.
+- Lightweight & fast → small key-value pairs (like theme=dark, lang=en).
+- Persistent → can survive browser restarts (if not expired).
+- Cross-request availability → automatically sent with each HTTP request to the same domain.
+
+Drawbacks:
+- Security risks → vulnerable to theft via XSS if not secured (e.g., stolen cookies can hijack sessions).
+- Size limit → usually max 4KB per cookie.
+- Can be disabled by users in browsers.
+- Visible to client → not good for sensitive data (like passwords).
+
+__Sessions__
+
+Benefits:
+- Secure → sensitive data is stored server-side (client only gets a session ID cookie).
+- Flexible storage → can be stored in DB, cache, or files.
+- Scalable → can store larger data than cookies (not limited to 4KB).
+- Built-in expiration → can automatically log users out after inactivity.
+
+Drawbacks:
+- Requires server storage → increases memory/DB usage as users grow.
+- Session management overhead → need cleanup of expired sessions.
+- Not shared across domains → sessions are tied to one app/server.
+- Slightly slower → extra DB/cache lookup for every request.
+
+# in web development, is the usage of cookies secure by default, or is there any potential risk that we should be aware of? How does Django handle this problem?
+
+No. By default, cookies are not inherently secure — they’re just small text stored in the browser. If not configured properly, they can be stolen, modified, or misused.
+
+__Risks of cookies:__
+- XSS (Cross-Site Scripting) → attacker injects JavaScript to steal cookies.
+- CSRF (Cross-Site Request Forgery) → attacker tricks browser into sending cookies to perform actions.
+- Man-in-the-Middle (MITM) attacks → if cookies are sent over HTTP (not HTTPS), they can be intercepted.
+- Session Hijacking → if a session cookie (sessionid) is stolen, attacker can impersonate the user.
+
+__How Django Handles Cookie Security:__
+- HttpOnly flag → prevents JavaScript from accessing cookies (mitigates XSS).
+- Django sets HttpOnly=True for session cookies by default.
+- Secure flag → ensures cookies are only sent over HTTPS.
+- CSRF protection → Django includes the {% csrf_token %} system to ensure cookies can’t be abused in CSRF attacks.
+
+
+# Step by Step Implementation:
+
+__Create User Registration__:
+- Added Imports to views.py
+<pre> 
+  from django.shortcuts import render, redirect, get_object_or_404 
+  from main.forms import FootballProductsForm 
+  from main.models import FootballProducts from django.core import serializers 
+  from django.http import HttpResponse from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
+  from django.contrib import messages from django.contrib.auth import authenticate, login, logout 
+  from django.contrib.auth.decorators import login_required import datetime 
+  from django.http import HttpResponseRedirect     
+  from django.urls import reverse 
+</pre>
+
+- Created login_user Function in views.py
+<pre>
+def login_user(request):
+   if request.method == 'POST':
+      form = AuthenticationForm(data=request.POST)
+
+      if form.is_valid():
+        user = form.get_user()
+        login(request, user)
+        response = HttpResponseRedirect(reverse("main:show_main"))
+        response.set_cookie('last_login', str(datetime.datetime.now()))
+        return response
+</pre>
+
+- Created function to logout in views.py
+<pre>
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+</pre>
+
+- Created function to register in views.py
+<pre>
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+</pre>
+
+- Created file named register.html to link it to the register function
+- Created login.html for users to login
+
+- configurate the path in urls.py
+<pre>
+from django.urls import path
+from main.views import show_main, create_football_product, product_details, show_xml, show_json, show_xml_by_id, show_json_by_id, register, login_user, logout_user
+app_name = 'main'
+
+  urlpatterns = [
+    path('', show_main, name='show_main'),
+    path('create-product/', create_football_product, name='create_football_product'),
+    path('product/<str:id>/', product_details, name='product_details'),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
+    path('product/xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('product/json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+    path('register/', register, name='register'),
+    path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout')
+]   
+</pre>
+
+__connect product model with user model__:
+
+- configured the models.py
+<pre>
+from django.db import models
+from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator # for rating
+
+class FootballProducts(models.Model):
+    name = models.CharField(max_length=120, help_text="Item Name")
+    description = models.TextField(help_text="Item Description")
+    thumbnail = models.URLField(max_length=330, help_text="Image URL")
+    price = models.IntegerField(help_text="Price(rupiah)")
+    category = models.CharField(max_length=50, help_text="Item category (ex: Ball, Boots, Shirt, etc)")
+    is_featured = models.BooleanField(default=False, help_text="a Featured Item?")
+    rating = models.IntegerField(default=0,validators=[MinValueValidator(0), MaxValueValidator(10)],help_text="Drop a rating (0-10)")
+    brand = models.CharField(max_length=100, blank=True, null=True, help_text="Brand name(ex: Puma, Under Armour, Nike)")
+    stock = models.IntegerField(default=0, help_text="Available stock")
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+</pre>
+Added: user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+- Make migrations
+  do python manage.py makemigration and python manage.py migrate
+
+- Updated show_main function in views.py
+<pre>
+  @login_required(login_url='/login')
+def show_main(request):
+    filter_type = request.GET.get("filter", "all")  # default 'all'
+
+    if filter_type == "all":
+        football_products = FootballProducts.objects.all()
+    else:
+        football_products = FootballProducts.objects.filter(user=request.user)
+
+    context = {
+        'npm' : '2406365326',
+        'name': request.user.username,
+        'class': 'PBP KKI',
+        'football_products' : football_products,
+        'last_login': request.COOKIES.get('last_login', 'Never')
+    }
+
+    return render(request, "main.html", context)
+
+</pre>
+  - updated create_football_product function in views.py
+<pre>
+    @login_required(login_url='/login')
+def create_football_product(request):
+    form = FootballProductsForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        football_product = form.save(commit=False)   
+        football_product.user = request.user         
+        football_product.save()                      
+        return redirect('main:show_main')
+
+    context = {
+        'form': form
+    }
+    return render(request, "create_football_product.html", context)
+</pre>
+
+__Pushed the website to github and Pacil Web Service__
+- pushed to github branch master
+- pushed to pacil web service
+
+__Created Dummy User and Password for website__
+
+User     : testuserwebsite1
+Password : Password123keren
+
+User     : testuserwebsite2
+Password : Password123keren
+
+
+
 
 
 
