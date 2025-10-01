@@ -581,26 +581,28 @@ Password : Password123keren
 CSS Selector Priority Order:
 
 - 1. Inline styles
+     
   Example: <div style="color:red;">
   Inline styles have the highest priority .
   IDs (#id)
   Example: #main { color: blue; }
-  More specific than classes, attributes, and elements.
+  
 
 - 2. Classes, Attributes, and Pseudo-classes
      
   Examples:
-  Class: .button{ ... }
-  Attribute: [type="text"]{ ... }
-  Pseudo-class: :hover, :first-child
-  Lower than IDs, higher than element selectors.
+  Class: .button{ ... },
+  Attribute: [type="text"]{ ... },
+  Pseudo-class: :hover, :first-child,
+  
 
 - 3. Elements and Pseudo-elements
+     
   Examples:
-  div { ... }
-  h1 { ... }
-  ::before, ::after
-  Lowest specificity.
+  div { ... },
+   h1 { ... }, 
+   ::before, ::after.
+  
 
 
 
