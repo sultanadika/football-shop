@@ -744,8 +744,40 @@ Implementation Steps:  Checklist step-by-step
 - DEPLOYED WEBSITE TO PWS AND PUSHED CODE TO GITHUB AND MADE README.MD
   
      
-  
+# ASSIGNMENT 6
 
+# What is the difference between synchronous request and asynchronous request?
+
+- Synchronous request:
+The client sends a request to the server and waits for the response before continuing with other tasks. This means the program is blocked until the server replies.
+Example: Submitting a form and the entire page reloads after receiving the response.
+
+- Asynchronous request:
+The client sends a request to the server but does not wait for the response to continue executing other code. The response is handled later, usually through callbacks or promises.
+Example: Using AJAX or Fetch API in JavaScript to update part of a webpage without reloading it.
+
+
+# How does AJAX work in Django (request–response flow)?
+
+How does AJAX work in Django (Request–Response Flow)?
+
+AJAX (Asynchronous JavaScript and XML) allows web pages to communicate with the Django backend without reloading the entire page.
+Here’s the step-by-step request–response flow:
+
+1. User Action (Frontend)
+The user performs an action on the page (e.g., clicking a button or submitting a form).
+
+2. AJAX Request (Client-Side)
+JavaScript (using fetch() or $.ajax()) sends an asynchronous HTTP request to a Django view URL — usually defined in urls.py.
+
+3. Django View (Server-Side)
+The request reaches the Django view function, which processes the data (e.g., reading form input, querying the database, etc.).
+
+4. Response from View
+The Django view returns a JSON response (using JsonResponse) instead of rendering a full HTML template.
+
+5. AJAX Callback (Frontend Again)
+JavaScript receives the JSON response and updates part of the webpage dynamically, such as showing a success message or updating a table — all without reloading the page.
 
 
 
