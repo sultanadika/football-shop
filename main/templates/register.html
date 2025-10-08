@@ -47,7 +47,7 @@
       {% endif %}
 
       <!-- Register Form -->
-      <form method="POST" action="" class="space-y-6">
+      <form id="registerForm" method="POST" action="{% url 'main:register' %}" class="space-y-6">
         {% csrf_token %}
         
         <div>
@@ -94,6 +94,9 @@
         </button>
       </form>
 
+      <!-- Toast Container -->
+      <div id="toast-container" class="fixed top-5 right-5 space-y-3 z-50"></div>
+
       <!-- Messages -->
       {% if messages %}
         <div class="mt-6 space-y-2">
@@ -124,5 +127,79 @@
     </div>
   </div>
 </div>
+
+<!-- AJAX + Toast Script -->
+<script>
+function getCSRFToken() {
+  const cookieValue = document.cookie
+    .split("; ")
+    .find(row => row.startsWith("csrftoken="))
+    ?.split("=")[1];
+  return cookieValue || document.querySelector("[name=csrfmiddlewaretoken]")?.value;
+}
+
+function showToast(title, message, type) {
+  const container = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+  toast.className = `px-4 py-3 rounded-lg shadow-lg border text-sm animate-fadeIn 
+                     ${type === "success" 
+                        ? "bg-green-900/50 border-green-700 text-green-300" 
+                        : type === "error" 
+                        ? "bg-red-900/50 border-red-700 text-red-300" 
+                        : "bg-gray-700 border-gray-600 text-gray-200"}`;
+  toast.innerHTML = `<strong class="block mb-1">${title}</strong>${message}`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3500);
+}
+
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const csrfToken = getCSRFToken();
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": csrfToken
+      },
+      credentials: "same-origin"
+    });
+
+    let data = {};
+    try {
+      data = await response.json();
+    } catch {
+      data = {};
+    }
+
+    if (response.ok && data.success) {
+      showToast("🎉 Registration successful!", "Redirecting you to login...", "success");
+      setTimeout(() => (window.location.href = "{% url 'main:login' %}"), 1500);
+    } else if (data.error) {
+      showToast("❌ Registration failed", data.error, "error");
+    } else {
+      showToast("❌ Registration failed", "Please check your form and try again.", "error");
+    }
+
+  } catch (error) {
+    showToast("⚠️ Error", "Something went wrong. Try again.", "error");
+  }
+});
+</script>
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+</style>
+
 {% endblock content %}
+
 

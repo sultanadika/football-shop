@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block meta %}
-<title>{{ product.name }} - ⚽ Soccers Apparel ⚽</title>
+<title>⚽ Soccers Apparel ⚽</title>
 {% endblock meta %}
 
 {% block content %}
@@ -16,12 +16,27 @@
       </a>
     </div>
     
+    <!-- Loading -->
+    <div id="loading-state" class="hidden bg-blue-900 rounded-lg border border-blue-700 p-12 text-center shadow">
+      <svg class="animate-spin h-8 w-8 text-blue-400 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
+      <p class="text-blue-200 mt-3">Loading product details...</p>
+    </div>
+
+    <!-- Error -->
+    <div id="error-state" class="hidden bg-blue-900 rounded-lg border border-blue-700 p-12 text-center">
+      <p class="text-red-400 font-medium mb-2">⚠️ Failed to load product.</p>
+      <p class="text-blue-200">Please try again later.</p>
+    </div>
+
     <!-- Product Card -->
-    <article class="bg-blue-900 rounded-lg border border-blue-700 shadow-lg overflow-hidden">
+    <article id="product-content" class="bg-blue-900 rounded-lg border border-blue-700 shadow-lg overflow-hidden">
       
       <!-- Header -->
       <div class="p-6 sm:p-8">
-        <div class="flex flex-wrap items-center gap-2 mb-4">
+        <div id="product-category" class="flex flex-wrap items-center gap-2 mb-4">
           <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-blue-700 text-white">
             {{ product.category }}
           </span>
@@ -32,55 +47,63 @@
           {% endif %}
         </div>
         
-        <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
+        <h1 id="product-name" class="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
           {{ product.name }}
         </h1>
         
         <div class="flex flex-wrap items-center text-sm text-blue-300 gap-4">
-          <time datetime="{{ product.created_at|date:'c' }}">
+          <time id="product-date" datetime="{{ product.created_at|date:'c' }}">
             Added: {{ product.created_at|date:"M j, Y g:i A" }}
           </time>
-          <span>Brand: {{ product.brand|default:"Unknown" }}</span>
-          <p><span class="font-semibold text-white">Price:</span> Rp {{ product.price|floatformat:0 }}</p>
+          <span id="product-brand">Brand: {{ product.brand|default:"Unknown" }}</span>
+          <!-- 🩵 FIXED PRICE LINE -->
+          <p id="product-price" class="font-semibold text-white">
+            Price: Rp {{ product.price|floatformat:0 }}
+          </p>
         </div>
       </div>
 
       <!-- Featured Image -->
-      {% if product.thumbnail %}
-        <div class="px-6 sm:px-8">
-            <img src="{{ product.thumbnail }}" 
-            alt="{{ product.name }}" 
-            class="w-full h-auto max-h-[700px] object-cover rounded-lg shadow">
-        </div>  
+      <div id="product-image-wrapper" class="px-6 sm:px-8 {% if not product.thumbnail %}hidden{% endif %}">
+        {% if product.thumbnail %}
+        <img id="product-image" src="{{ product.thumbnail }}" alt="{{ product.name }}" class="w-full h-auto max-h-[700px] object-cover rounded-lg shadow">
+        {% else %}
+        <img id="product-image" class="hidden" />
         {% endif %}
+      </div>  
 
-      <!-- Content -->
+      <!-- Description -->
       <div class="p-6 sm:p-8">
-        <div class="text-blue-100 leading-relaxed whitespace-pre-line text-base sm:text-lg mb-6">
+        <div id="product-description" class="text-blue-100 leading-relaxed whitespace-pre-line text-base sm:text-lg mb-6">
           {{ product.description }}
         </div>
+      </div>
 
-      <!-- Author / Owner -->
+      <!-- Seller / Owner -->
       <div class="border-t border-blue-700 p-6 sm:p-8 bg-blue-950">
         <div class="flex items-center justify-between">
           <div>
             <div class="font-medium text-white">
-              {% if product.user %}
-                  <p>Seller: {{ product.user.username }}</p>
-              {% else %}
-                  <p>Seller: Anonymous</p>
-              {% endif %}
+              <p id="product-seller">
+                {% if product.user %}
+                  Seller: {{ product.user.username }}
+                {% else %}
+                  Seller: Anonymous
+                {% endif %}
+              </p>
             </div>
             <p class="text-sm text-blue-300">Product Owner</p>
           </div>
 
-          <!-- Edit/Delete if owner -->
+          <!-- Edit/Delete Buttons -->
           {% if user.is_authenticated and product.user == user %}
           <div class="flex space-x-3">
-            <a href="{% url 'main:edit_product' product.id %}" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black rounded-md font-medium transition-colors">
+            <a href="{% url 'main:edit_product' product.id %}" 
+               class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black rounded-md font-medium transition-colors">
               Edit
             </a>
-            <a href="{% url 'main:delete_product' product.id %}" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md font-medium transition-colors">
+            <a href="{% url 'main:delete_product' product.id %}" 
+               class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md font-medium transition-colors">
               Delete
             </a>
           </div>
@@ -90,4 +113,87 @@
     </article>
   </div>
 </div>
+
+<!-- AJAX Script -->
+<script>
+const PRODUCT_ID = "{{ product.id }}";
+const PRODUCT_DETAIL_ENDPOINT = `/product/json/${PRODUCT_ID}/`;
+
+const loadingState = document.getElementById('loading-state');
+const errorState = document.getElementById('error-state');
+const productContent = document.getElementById('product-content');
+
+const productName = document.getElementById('product-name');
+const productCategory = document.getElementById('product-category');
+const productDate = document.getElementById('product-date');
+const productBrand = document.getElementById('product-brand');
+const productPrice = document.getElementById('product-price');
+const productDescription = document.getElementById('product-description');
+const productImageWrapper = document.getElementById('product-image-wrapper');
+const productImage = document.getElementById('product-image');
+const productSeller = document.getElementById('product-seller');
+
+// Show/hide UI states
+function showState(state) {
+  loadingState.classList.toggle('hidden', state !== 'loading');
+  errorState.classList.toggle('hidden', state !== 'error');
+  productContent.classList.toggle('hidden', state !== 'ready');
+}
+
+// Render product data
+function renderProduct(product) {
+  productName.textContent = product.name;
+
+  productCategory.innerHTML = `
+    <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-blue-700 text-white">
+      ${product.category || 'Uncategorized'}
+    </span>
+    ${product.is_featured ? `
+      <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-yellow-200 text-yellow-800">
+        Featured
+      </span>` : ''}
+  `;
+
+  const formattedDate = product.created_at
+    ? new Date(product.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+    : 'Unknown date';
+
+  productDate.textContent = `Added: ${formattedDate}`;
+  productBrand.textContent = `Brand: ${product.brand || 'Unknown'}`;
+  // 🩵 FIXED PRICE RENDERING (clean, single)
+  productPrice.textContent = `Price: Rp ${Number(product.price).toLocaleString('id-ID')}`;
+
+  if (product.thumbnail) {
+    productImage.src = product.thumbnail;
+    productImage.alt = product.name;
+    productImageWrapper.classList.remove('hidden');
+  } else {
+    productImageWrapper.classList.add('hidden');
+  }
+
+  productDescription.textContent = product.description || 'No description available.';
+  productSeller.textContent = `Seller: ${product.user_username || 'Anonymous'}`;
+}
+
+// Fetch product data
+async function loadProductDetail() {
+  try {
+    showState('loading');
+    const response = await fetch(PRODUCT_DETAIL_ENDPOINT, { headers: { 'Accept': 'application/json' } });
+
+    if (!response.ok) throw new Error('Fetch failed');
+
+    const productData = await response.json();
+    renderProduct(productData);
+    showState('ready');
+  } catch {
+    showState('error');
+  }
+}
+
+loadProductDetail();
+</script>
 {% endblock content %}
+
+
+
